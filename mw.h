@@ -15,6 +15,15 @@ public:
     explicit mw(QWidget *parent = 0);
     ~mw();
 
+    void updateDeviceList();
+
+signals:
+    void updateInputDeviseList();
+    void updateOutputDeviceList();
+
+public slots:
+    void setMidiDeviceList(QStringList inputList, QStringList outputList);
+
 private slots:
 
     void on_openButton_clicked();

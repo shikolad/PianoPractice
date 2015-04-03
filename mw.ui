@@ -14,7 +14,7 @@
    <string>mw</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -58,6 +58,46 @@
         <string>settings</string>
        </property>
       </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>240</y>
+      <width>188</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Input device</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="inputDeviceCombo"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Output device</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="outputDeviceCombo"/>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
