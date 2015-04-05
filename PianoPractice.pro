@@ -17,13 +17,17 @@ SOURCES += main.cpp\
         mw.cpp\
     rtmidiwrapper.cpp \
     miditrack.cpp \
-    appcontext.cpp
+    appcontext.cpp \
+    midisong.cpp \
+    midievent.cpp
         
 
 HEADERS  += mw.h\
     rtmidiwrapper.h \
     miditrack.h \
-    appcontext.h
+    appcontext.h \
+    midisong.h \
+    midievent.h
 
 FORMS    += mw.ui
 

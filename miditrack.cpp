@@ -10,25 +10,18 @@ MidiTrack::~MidiTrack()
 
 }
 
-MidiTrack *MidiTrack::loadFromFile(QString filePath){
-    QFile file;
-    file.setFileName(filePath);
-    if (!file.open(QIODevice::ReadOnly)){
-        return new MidiTrack();
-        //todo handle error
+QDataStream &operator >>(QDataStream &stream,MidiTrack &track){
+
+    //track chunks reading
+    const quint32 trackMagic = 0x4d54726b;//"MTrk" string
+    quint32 file_magic;
+
+    stream >> file_magic;
+    if (file_magic != trackMagic){
+        //todo error reading file!!!
     }
-
-    const qint32 magic = 0x4d546864;
-
-    qint32 file_magic;
-    file.read((char*)(&file_magic),4);
-
-    if (magic != file_magic){
-        //todo not a midi file
-    }
-
-
-    file.close();
-
-    return new MidiTrack();
+    quint32 trackLength;
+    stream >> trackLength;
+    trackLength++;
+    return stream;
 }

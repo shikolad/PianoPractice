@@ -2,7 +2,7 @@
 #define MIDITRACK_H
 
 #include <QObject>
-#include <QFile>
+#include <QDataStream>
 
 class MidiTrack : public QObject
 {
@@ -10,13 +10,15 @@ class MidiTrack : public QObject
 public:
     explicit MidiTrack(QObject *parent = 0);
     ~MidiTrack();
-    static MidiTrack *loadFromFile(QString filePath);
+
+    friend QDataStream &operator >>(QDataStream &stream,MidiTrack &track);
 
 signals:
 
 public slots:
 
 private:
+
 
 };
 

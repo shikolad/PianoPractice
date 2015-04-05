@@ -1,7 +1,10 @@
 #include "mw.h"
 #include <QApplication>
 #include <rtmidiwrapper.h>
-#include <miditrack.h>
+
+//these one are just for test
+#include <midisong.h>
+#include <QDir>
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +12,7 @@ int main(int argc, char *argv[])
 
     RTMidiWrapper midiWrapper;
     mw mainWindow;
-    MidiTrack::loadFromFile(QString::fromUtf8("~/midi/una-mattina.midi"));
+    MidiSong::loadFromFile(QDir::homePath().append(QString::fromUtf8("/midi/una-mattina.midi")));
 
     QObject::connect(&midiWrapper,SIGNAL(updateDeviceList(QStringList,QStringList)),
                     &mainWindow,SLOT(setMidiDeviceList(QStringList,QStringList)));
