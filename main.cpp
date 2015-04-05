@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     RTMidiWrapper midiWrapper;
     mw mainWindow;
-    MidiTrack::loadFromFile(QString::fromUtf8("/home/shiko/midi/una-mattina.midi"));
+    MidiTrack::loadFromFile(QString::fromUtf8("~/midi/una-mattina.midi"));
 
     QObject::connect(&midiWrapper,SIGNAL(updateDeviceList(QStringList,QStringList)),
                     &mainWindow,SLOT(setMidiDeviceList(QStringList,QStringList)));
