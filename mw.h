@@ -18,12 +18,12 @@ public:
     void updateDeviceList();
 
 signals:
-    void updateInputDeviseList();
-    void updateOutputDeviceList();
+
+    void activeDeviceChanged(qint32 input, qint32 output);
 
 public slots:
     void setMidiDeviceList(QStringList inputList, QStringList outputList);
-
+    void activeDeviceChanged(qint32 index);
 private slots:
 
     void on_openButton_clicked();

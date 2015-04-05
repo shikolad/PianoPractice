@@ -10,6 +10,8 @@ RTMidiWrapper::RTMidiWrapper(QObject *parent) : QObject(parent)
     }catch(RtMidiError &error){
 //todo hadle error
     }
+
+    activeInput = activeOutput = -1;
 }
 
 RTMidiWrapper::~RTMidiWrapper()
@@ -47,4 +49,27 @@ QStringList RTMidiWrapper::getOutputDeviceList(){
         }
     }
     return result;
+}
+
+void RTMidiWrapper::setActiveDevices(qint32 input, qint32 output){
+    try {
+        if (input != activeInput){
+            if (activeInput != -1)
+                midiInputDevice->closePort();
+            if (input != -1){
+                midiInputDevice->openPort(input);
+            }
+            activeInput = input;
+        }
+        if (output != activeOutput){
+            if (activeOutput != -1)
+                midiOutputDevice->closePort();
+            if (output != -1){
+                midiOutputDevice->openPort(output);
+            }
+            activeOutput = output;
+        }
+    }catch (RtMidiError &error) {
+//todo handle error
+    }
 }

@@ -2,6 +2,7 @@
 #define MIDITRACK_H
 
 #include <QObject>
+#include <QFile>
 
 class MidiTrack : public QObject
 {
@@ -9,6 +10,7 @@ class MidiTrack : public QObject
 public:
     explicit MidiTrack(QObject *parent = 0);
     ~MidiTrack();
+    static MidiTrack *loadFromFile(QString filePath);
 
 signals:
 

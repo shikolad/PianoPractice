@@ -4,6 +4,7 @@
 #include <QObject>
 #include <RtMidi.h>
 #include <QStringList>
+#include <unistd.h>
 
 class RTMidiWrapper : public QObject
 {
@@ -17,6 +18,7 @@ signals:
 
 public slots:
     void updateDeviceList();
+    void setActiveDevices(qint32 input, qint32 output);
 
 private:
     RtMidiIn *midiInputDevice;
@@ -24,6 +26,8 @@ private:
 
     QStringList getInputDeviceList();
     QStringList getOutputDeviceList();
+
+    qint32 activeInput, activeOutput;
 };
 
 #endif // RTMIDIWRAPPER_H

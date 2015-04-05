@@ -17,8 +17,8 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>320</y>
+      <x>0</x>
+      <y>360</y>
       <width>305</width>
       <height>33</height>
      </rect>
@@ -61,12 +61,12 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>240</y>
-      <width>188</width>
+      <x>320</x>
+      <y>330</y>
+      <width>291</width>
       <height>60</height>
      </rect>
     </property>
@@ -81,7 +81,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="inputDeviceCombo"/>
+        <widget class="QComboBox" name="inputDeviceCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -95,7 +102,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="outputDeviceCombo"/>
+        <widget class="QComboBox" name="outputDeviceCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
