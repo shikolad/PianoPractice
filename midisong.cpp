@@ -12,6 +12,10 @@ MidiSong::~MidiSong()
 
 }
 
+void MidiSong::addTrack(MidiTrack *track){
+    //todo add track
+}
+
 MidiSong *MidiSong::loadFromFile(QString filePath){
     QFile file;
     file.setFileName(filePath);
@@ -47,12 +51,15 @@ MidiSong *MidiSong::loadFromFile(QString filePath){
     stream >> trackNumber;
     stream >> division;
 
+    MidiSong *song = new MidiSong();
+
     while (!stream.atEnd()){
-        MidiTrack track;
-        stream >> track;
+        MidiTrack *track = new MidiTrack(song);
+        stream >> (*track);
+        song->addTrack(track);
     }
 
     file.close();
 
-    return new MidiSong();
+    return song;
 }

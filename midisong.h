@@ -10,6 +10,9 @@ class MidiSong : public QObject
 public:
     explicit MidiSong(QObject *parent = 0);
     ~MidiSong();
+
+    void addTrack(MidiTrack *track);
+
     static MidiSong *loadFromFile(QString filePath);
 signals:
 
