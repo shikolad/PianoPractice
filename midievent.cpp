@@ -40,8 +40,8 @@ QDataStream &operator >>(QDataStream &stream,MidiEvent &track){
         break;
     case 0xFF:
         stream >> byte;//type
-        eventDataSize = MidiEvent::readVariableLengthQuantity(&stream);
-        for (i = 0; i < eventDataSize; i++){
+        eventDataSize = MidiEvent::readVariableLengthQuantity(&stream);//data length
+        for (i = 0; i < eventDataSize; i++){//data itself
             stream >> byte;
             message.push_back(byte);
         }
