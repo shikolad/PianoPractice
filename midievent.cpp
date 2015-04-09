@@ -41,12 +41,23 @@ QDataStream &operator >>(QDataStream &stream,MidiEvent &track){
     case 0xFF:
         stream >> byte;//type
         eventDataSize = MidiEvent::readVariableLengthQuantity(&stream);//data length
-        for (i = 0; i < eventDataSize; i++){//data itself
+        for (i = 0; i < eventDataSize; i++){//data
             stream >> byte;
             message.push_back(byte);
         }
         break;
     default:
+        if ((byte >= 0xC0) && (byte <= 0xDF)){//2 byte midi event
+            message.push_back(byte);
+            stream >> byte;
+            message.push_back(byte);
+        }else if ((byte >= 0x80) && (byte <= 0xEF)){//3 byte midi event
+            message.push_back(byte);
+            stream >> byte;
+            message.push_back(byte);
+            stream >> byte;
+            message.push_back(byte);
+        }
         break;
     }
     track.setMessage(message);
@@ -60,6 +71,6 @@ qint32 MidiEvent::readVariableLengthQuantity(QDataStream *stream){
         (*stream) >> byte;
         value = (value << 7) + (byte & 0b01111111);
 
-    }while (byte & 0b10000000 != 0);
+    }while ((byte & 0b10000000) != 0);
     return value;
 }
