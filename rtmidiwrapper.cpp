@@ -1,4 +1,5 @@
 #include "rtmidiwrapper.h"
+#include <QDebug>
 
 RTMidiWrapper::RTMidiWrapper(QObject *parent) : QObject(parent)
 {
@@ -58,6 +59,7 @@ void RTMidiWrapper::setActiveDevices(qint32 input, qint32 output){
                 midiInputDevice->closePort();
             if (input != -1){
                 midiInputDevice->openPort(input);
+                midiInputDevice->setCallback(&RTMidiWrapper::midiInputCallback,(void*)this);
             }
             activeInput = input;
         }
@@ -72,4 +74,22 @@ void RTMidiWrapper::setActiveDevices(qint32 input, qint32 output){
     }catch (RtMidiError &error) {
 //todo handle error
     }
+}
+
+void RTMidiWrapper::sendMidiEvent(std::vector<quint8> message){
+    if (midiOutputDevice != NULL)
+        midiOutputDevice->sendMessage(&message);
+}
+
+void RTMidiWrapper::sendMidiEvent(std::vector<unsigned char> *message){
+    if (midiOutputDevice)
+        midiOutputDevice->sendMessage(message);
+}
+
+void RTMidiWrapper::midiInputCallback(double deltatime, std::vector< unsigned char > *message, void *userData){
+    if (userData == NULL)
+        return;
+    RTMidiWrapper *wrapper = (RTMidiWrapper*)userData;
+    wrapper->sendMidiEvent(message);
+    qDebug() << "input message" << QString((const char*)message->data());
 }

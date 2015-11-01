@@ -13,7 +13,7 @@ MidiSong::~MidiSong()
 }
 
 void MidiSong::addTrack(MidiTrack *track){
-    //todo add track
+    trackList.append(track);
 }
 
 MidiSong *MidiSong::loadFromFile(QString filePath){
@@ -62,4 +62,30 @@ MidiSong *MidiSong::loadFromFile(QString filePath){
     file.close();
 
     return song;
+}
+
+QList<MidiEvent*> MidiSong::getMidiEvents(qint32 time){
+    QList<MidiEvent*> result;
+    foreach (MidiTrack *track, trackList) {
+        QList<MidiEvent*> events = track->getEvents(time);
+        foreach (MidiEvent *ev, events) {
+            result.push_front(ev);
+        }
+    }
+    return result;
+}
+
+qint32 MidiSong::getNextDelta(qint32 time){
+    qint32 nextDelta = -1;
+    if (!trackList.isEmpty()){
+        QVector<MidiTrack*>::iterator iterator = trackList.begin() + 1;
+        nextDelta = (*iterator)->getNextDelta(time);
+        iterator++;
+        while (iterator != trackList.end()) {
+            qint32 tmp = (*iterator)->getNextDelta(time);
+            if ((tmp < nextDelta) && (tmp != -1))
+                nextDelta = tmp;
+        }
+    }
+    return nextDelta;
 }

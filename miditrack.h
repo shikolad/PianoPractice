@@ -17,6 +17,10 @@ public:
 
     friend QDataStream &operator >>(QDataStream &stream,MidiTrack &track);
 
+    QList<MidiEvent *> getEvents(qint32 time);
+
+    qint32 getNextDelta(qint32 time);
+
 signals:
 
 public slots:

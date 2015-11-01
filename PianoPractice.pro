@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     miditrack.cpp \
     appcontext.cpp \
     midisong.cpp \
-    midievent.cpp
+    midievent.cpp \
+    midiplayer.cpp
         
 
 HEADERS  += mw.h\
@@ -27,7 +28,8 @@ HEADERS  += mw.h\
     miditrack.h \
     appcontext.h \
     midisong.h \
-    midievent.h
+    midievent.h \
+    midiplayer.h
 
 FORMS    += mw.ui
 
